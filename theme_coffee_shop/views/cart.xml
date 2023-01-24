@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="boec_cart" name="Boec Cart" inherit_id="website_sale.cart">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <section id="banner" class="banner-imgcart">
+                <div class="container wrapper ">
+                    <div class="banner-content">
+                        <div class="banner-text">
+                            <p class="banner-head">Pick your</p>
+                            <p class="banner-head">favourites</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section id="my-cart" class="container wrapper">
+                <span class="cart-heading">My Cart</span>
+            </section>
+            <div class="border">
+            </div>
+            <section id="carts" class="container wrapper">
+                <div t-if="website_sale_order and website_sale_order.website_order_line"
+                     class="mb16 table table-striped table-sm js_cart_lines"
+                     id="cart_products">
+                    <t t-set="show_qty"
+                       t-value="is_view_active('website_sale.product_quantity')"/>
+                    <div class="row item-mainhead">
+                        <div class="col-6 pr-mob">
+                            <p class="table-head">Product</p>
+                        </div>
+                        <div class="col mob-cart">
+                            <p class="table-head">
+                                <t t-if="show_qty">
+                                    Quantity
+                                </t>
+                            </p>
+                        </div>
+                        <div class="col mob-cart">
+                            <p class="table-head">Price</p>
+                        </div>
+                         <div class="col mob-cart">
+                            <p class="table-head">Total</p>
+                        </div>
+                        <div class="col mob-cart">
+                            <p class="table-head"></p>
+                        </div>
+                    </div>
+                    <t t-foreach="website_sale_order.website_order_line"
+                       t-as="line">
+                        <div class="row table-content">
+                            <div class="col-6 pr-mob">
+                                <div class="item">
+                                    <div class="item-img">
+                                        <i class="fa fa-times mob-close"
+                                           aria-hidden="false"/>
+                                        <img t-att-src="image_data_uri(line.product_id.image_128)"
+                                             alt=""/>
+                                    </div>
+                                    <div class="item-desc">
+                                        <p class="item-name">
+                                            <t t-esc="line.product_id.name"/>
+                                        </p>
+                                        <p class="item-about">
+                                            <t t-esc="line.product_id.categ_id.name"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mob-col">
+                                        <div class="counter">
+                                            <div class="box-container">
+                                                <a href="#" class="remove_btn">
+                                                    <span>-</span>
+                                                </a>
+                                                <input type="text"
+                                                       class="count-box"
+                                                       t-att-data-line-id="line.id"
+                                                       t-att-data-product-id="line.product_id.id"
+                                                       t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"/>
+                                                <a href="#" class="add_btn">
+                                                    <span>+</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="col mob-col">
+                                <p class="item-price"><t t-esc="line.price_unit"/></p>
+                            </div>
+                            <div class="col mob-col">
+                                <p class="item-price"><t t-esc="line.price_subtotal"/></p>
+                            </div>
+                            <div class="col remove">
+                                <div class="close-circle">
+                                    <i class="fa fa-times"
+                                       aria-hidden="false"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </section>
+            <div class="border">
+            </div>
+<!--            <section id="cart-sum" class="container wrapper">-->
+<!--                <div class="cart-left">-->
+<!--                    <div class="continue-shopping">-->
+<!--                        <a href="shop.html">-->
+<!--                            <img src="images/landing page/testimonial/Arrow 2.svg"-->
+<!--                                 alt=""/>-->
+<!--                        </a>-->
+<!--                        <span class="conti-shop">Continue shopping</span>-->
+<!--                    </div>-->
+<!--                    <div class="shop-details">-->
+<!--                        <p>Congrats you’re eligible for free shipping</p>-->
+<!--                        <p>100% Secure &amp; Encrypt</p>-->
+<!--                        <img src="icons/payment-method_69e7ec.svg" alt=""/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="cart-right">-->
+<!--                    <div class="row list-row">-->
+<!--                        <p class="list">Subtotal:</p>-->
+<!--                        <p class="amount">$72.96</p>-->
+<!--                    </div>-->
+<!--                    <div class="row list-row">-->
+<!--                        <p class="list">Sales tax:</p>-->
+<!--                        <p class="amount">$12.99</p>-->
+<!--                    </div>-->
+<!--                    <div class="row list-row">-->
+<!--                        <p class="list">Coupon code:</p>-->
+<!--                        <a class="coupon" href="#">Add coupon</a>-->
+<!--                    </div>-->
+<!--                    <div class="row list-row">-->
+<!--                        <p class="list">Grand total:</p>-->
+<!--                        <p class="grand-total">$85.95</p>-->
+<!--                    </div>-->
+<!--                    <div class="check-btn">-->
+<!--                        <a href="#" class="btn-ckeckout">Check out as a guest-->
+<!--                        </a>-->
+<!--                        <a href="#" class="btn-ckeckout">Sign in for faster-->
+<!--                            checkout-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
+        </xpath>
+    </template>
+</odoo>

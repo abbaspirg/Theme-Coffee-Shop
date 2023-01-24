@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="header_eco_foodO"
+              inherit_id="website.template_header_default"
+              name="Template Header Theme EcoFood" active="True">
+        <xpath expr="//t[@t-call='website.navbar']" position="replace">
+            <header class="">
+                <section id="header">
+                    <nav class="nav-bar wrapper">
+                        <div class="logo">
+                            <img src="/theme_coffee_shop/static/src/images/logo.png"
+                                 alt=""/>
+                        </div>
+                        <ul id="nav-item">
+                            <t t-foreach="website.menu_id.child_id"
+                               t-as="submenu">
+                                <t t-call="website.submenu">
+                                    <t t-set="item_class"
+                                       t-value="'nav-item'"/>
+                                    <t t-set="link_class"
+                                       t-value="'nav-link'"/>
+                                </t>
+                            </t>
+                            <!--                            <li>-->
+                            <!--                                <a href="menu.html">Menu</a>-->
+                            <!--                            </li>-->
+                            <!--                            <li>-->
+                            <!--                                <a href="">Shop-->
+                            <!--                                    <i class="fa fa-angle-down"-->
+                            <!--                                       aria-hidden="true"></i>-->
+                            <!--                                </a>-->
+                            <!--                                <div class="sub-menu">-->
+                            <!--                                    <ul>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="shop.html">Shop</a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="cart.html">Cart</a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="checkout.html">Check out-->
+                            <!--                                            </a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="#">My account</a>-->
+                            <!--                                        </li>-->
+                            <!--                                    </ul>-->
+                            <!--                                </div>-->
+                            <!--                            </li>-->
+                            <!--                            <li>-->
+                            <!--                                <a href="">About-->
+                            <!--                                    <i class="fa fa-angle-down"-->
+                            <!--                                       aria-hidden="true"></i>-->
+                            <!--                                </a>-->
+                            <!--                                <div class="sub-menu">-->
+                            <!--                                    <ul>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="about.html">About us</a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="">Reservation</a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="Features.html">Features-->
+                            <!--                                            </a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="">Gallery</a>-->
+                            <!--                                        </li>-->
+                            <!--                                        <li>-->
+                            <!--                                            <a href="">FAQ</a>-->
+                            <!--                                        </li>-->
+                            <!--                                    </ul>-->
+                            <!--                                </div>-->
+                            <!--                            </li>-->
+                            <t t-if="request.env.user._is_public()">
+                                <li id="login-btn">
+                                    <a class="loginbtn" href="#">Login
+                                    </a>
+                                </li>
+                            </t>
+                            <!--                            <t t-call="portal.placeholder_user_sign_in">-->
+                            <!--                                <a class="loginbtn" href="#">Login-->
+                            <!--                                    <t t-set="_item_class"-->
+                            <!--                                       t-value="'nav-item ml-lg-auto'"/>-->
+                            <!--                                    <t t-set="_link_class"-->
+                            <!--                                       t-value="'nav-link'"/>-->
+                            <!--                                </a>-->
+                            <!--                            </t>-->
+                            <t t-if="not request.env.user._is_public()">
+                                <li>
+                                    <a href="">
+                                        <t t-esc="request.env.user.name"/>
+                                        <i class="fa fa-angle-down"
+                                           aria-hidden="true">
+                                        </i>
+                                    </a>
+                                    <div class="sub-menu">
+                                        <ul>
+                                            <li>
+                                                <a href="/my/home"
+                                                   role="menuitem">
+                                                    My Account
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a t-attf-href="/web/session/logout?redirect=/"
+                                                   role="menuitem"
+                                                   id="o_logout">
+                                                    Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </t>
+                            <!--                            <li>-->
+                            <!--                                <t t-call="portal.user_dropdown">-->
+                            <!--                                    <t t-set="_user_name" t-value="true"/>-->
+                            <!--                                    <t t-set="_item_class"-->
+                            <!--                                       t-valuef="nav-item dropdown ms-lg-auto"/>-->
+                            <!--                                    <t t-set="_link_class"-->
+                            <!--                                       t-valuef="nav-link fw-bold"/>-->
+                            <!--                                </t>-->
+                            <!--                            </li>-->
+                            <!--                                <t t-if="website.user_id">-->
+                            <!--                                    <li><a href="">Mitchell Admin <i class="fa fa-angle-down" aria-hidden="true"></i></a>-->
+                            <!--                                    <div class="sub-menu">-->
+                            <!--                                       <li>-->
+                            <!--                                        <a href="/my/home" role="menuitem">-->
+                            <!--                                            <i class="fa fa-fw fa-id-card-o me-1 small text-muted"/>-->
+                            <!--                                            My Account-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a t-attf-href="/web/session/logout?redirect=/"-->
+                            <!--                                           role="menuitem" id="o_logout">-->
+                            <!--                                            <i class="fa fa-fw fa-sign-out me-1 small text-muted"/>-->
+                            <!--                                            Logout-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    </div>-->
+                            <!--                                    </li>-->
+                            <!--                                </t>-->
+                            <div class="notify-icon ">
+                                <!--                                <li class="notification">-->
+                                <!--                                    <img src="/theme_coffee_shop/static/src/images/wishlist.png"-->
+                                <!--                                         alt=""/>-->
+                                <!--                                    <div class="notify"></div>-->
+                                <!--                                </li>-->
+                                <t t-set="website_sale_order"
+                                   t-value="website.sale_get_order()"/>
+                                <t t-set="show_cart" t-value="true"/>
+                                <li class="notification">
+                                        <img class="cart-icon"
+                                             src="/theme_coffee_shop/static/src/images/cart.png"
+                                             alt=""/>
+                                        <sup class="my_cart_quantity badge badge-primary"
+                                             t-esc="website_sale_order and website_sale_order.cart_quantity or '0'"
+                                             t-att-data-order-id="website_sale_order and website_sale_order.id or ''"
+                                             style="color: black;"/>
+                                </li>
+                            </div>
+
+                        </ul>
+                        <div class="navbar-icon ">
+                            <div class="navbar-mob-icon">
+                                <li class="notification">
+                                    <img src="/theme_coffee_shop/static/src/images/wishlist.png"
+                                         alt=""/>
+                                    <div class="notify"></div>
+                                </li>
+                                <li class="notification">
+                                    <img class="cart-icon"
+                                         src="/theme_coffee_shop/static/src/images/cart.png"
+                                         alt=""/>
+                                    <div class="notify"></div>
+                                </li>
+                            </div>
+
+
+                        </div>
+
+
+                        <div id="nav-icon" class="menu">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+
+
+                    </nav>
+                    <div class="shopping-cart">
+                        <div class="cart-box">
+                            <div class="col remove cartremove">
+                                <div class="close-circle ">
+                                    <i class="fa fa-times"
+                                       aria-hidden=""></i>
+                                </div>
+
+                            </div>
+                            <h3 class="cart-name">Cart items</h3>
+
+                            <div class="cart-border">
+
+                            </div>
+                            <div class="items-cart">
+                                <t t-foreach="website_sale_order.order_line" t-as="order_line">
+                                <div class="item">
+                                    <div class="item-img">
+                                        <img t-attf-src="data:image/png;base64,{{order_line.product_id.image_1920}}"
+                                             alt=""/>
+                                    </div>
+                                    <div class="item-desc">
+                                        <p class="item-cartname"><t t-esc="order_line.product_id.name"/>
+                                        </p>
+                                        <p class="item-cartabout"><t t-esc="order_line.product_id.categ_id.name"/></p>
+                                        <p class="item-rate"><t t-esc="order_line.price_unit"/></p>
+                                    </div>
+
+                                </div>
+                                </t>
+                            </div>
+                            <div class="cart-border">
+                            </div>
+                            <div class="row list-row cart-box-total">
+                                <p class="list">Subtotal:</p>
+                                <p class="amount"><t t-esc="website_sale_order.amount_total"/></p>
+                            </div>
+
+                            <div class="cart-buttons">
+                                 <a href="/shop/cart"
+                                    t-attf-class="nav-link"><button class="cartview">View Cart</button></a>
+                                <a href="/shop/payment"><button class="cartcheckout">checkout</button></a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <section class="login-form-container">
+                    <form action="" style="width: 450px;height: 430px;"
+                          role="form" t-attf-action="/web/login" method="post"
+                          onsubmit="this.action = '/web/login' + location.hash">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()"/>
+                        <i class="fa-solid fa-xmark login-close">X</i>
+                        <div class="form-content">
+                            <h3 class="login-form-head">Welcome to expresoo
+                            </h3>
+                            <div class="form-group">
+                                <input type="text"
+                                       class="login-input "
+                                       placeholder="Email"
+                                       name="login"
+                                       t-att-value="login"
+                                       id="login"
+                                       required="required"
+                                       autofocus="autofocus"
+                                       autocapitalize="off"
+                                       style="margin-bottom: 15px;"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password"
+                                       class="login-input "
+                                       placeholder="Password"
+                                       name="password"
+                                       id="password"
+                                       required="required"
+                                       autocomplete="current-password"
+                                       t-att-autofocus="'autofocus' if login else None"
+                                       maxlength="4096"/>
+                            </div>
+                            <div class="password-settings">
+                                <div class="remember">
+                                </div>
+                                <a class="frgt-text" href="">Forgot password?
+                                </a>
+                            </div>
+                            <button type="submit"
+                                    class="login-google">Login
+                            </button>
+                            <p class="register">Not registred yet?
+                                <a href="" class="create-one">Create an
+                                    account
+                                </a>
+                            </p>
+                        </div>
+                        <input type="hidden" name="redirect"
+                               t-att-value="redirect"/>
+                    </form>
+                </section>
+            </header>
+        </xpath>
+    </template>
+</odoo>
