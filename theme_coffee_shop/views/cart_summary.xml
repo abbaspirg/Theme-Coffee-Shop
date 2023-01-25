@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="coffee_short_cart_summary"
+              inherit_id="website_sale.short_cart_summary"
+              name="Coffee Cart Summary">
+        <xpath expr="//div[hasclass('js_cart_summary')]" position="replace">
+            <div class="cart-right"
+                 t-if="website_sale_order and website_sale_order.website_order_line">
+                <div>
+                    <t t-call="website_sale.total">
+                        <t t-set="no_rowspan" t-value="1"/>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="coffee_shop_total" inherit_id="website_sale.total"
+              name="Coffee Total">
+        <xpath expr="." position="replace">
+            <div t-if="website_sale_order and website_sale_order.website_order_line">
+                <div class="list-row">
+                    <p class="list">Subtotal:</p>
+                    <p class="amount"><t t-esc="website_sale_order.amount_untaxed"/></p>
+                </div>
+
+                <div class="list-row">
+                    <p class="list">Sales tax:</p>
+                    <p class="amount"><t t-esc="website_sale_order.amount_tax"/></p>
+                </div>
+
+                <t t-if="not hide_promotions">
+                <div class="list-row">
+                    <t t-set='force_coupon' t-value="website_sale_order.pricelist_id.code or request.params.get('code_not_available')"/>
+                    <t t-if="not force_coupon">
+                    <p class="list">Coupon code:</p>
+                    <a class="show_coupon coupon" href="#">Add coupon</a>
+                    </t>
+                     <div t-attf-class="coupon_form #{not force_coupon and 'd-none'}">
+                        <t t-call="website_sale.coupon_form"/>
+                    </div>
+                </div>
+                </t>
+
+                <div class="list-row">
+                    <p class="list">Grand total:</p>
+                    <p class="grand-total"><t t-esc="website_sale_order.amount_total"/></p>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

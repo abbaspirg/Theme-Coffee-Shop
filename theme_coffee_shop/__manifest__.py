@@ -10,6 +10,13 @@
         'views/footer.xml',
         'views/contact_us.xml',
         'views/cart.xml',
+        'views/cart_lines.xml',
+        'views/cart_popover.xml',
+        'views/cart_summary.xml',
+        'views/payment.xml',
+        'views/payment_summary.xml',
+        'views/checkout.xml',
+        'views/address.xml',
     ],
     'assets': {
         'web.assets_frontend': [

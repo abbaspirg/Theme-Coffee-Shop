@@ -1,3 +1,7 @@
+odoo.define("theme_coffee_shop.theme_coffee_shop_template", function (require) {
+  "use strict";
+  var ajax = require('web.ajax');
+
 const navicon = document.getElementById('nav-icon');
 const navitem = document.getElementById('nav-item');
 
@@ -124,3 +128,4 @@ document.querySelector(".cartremove").onclick=()=>{
 //  slides[slideIndex-1].style.display = "block";
 //
 //}
+});

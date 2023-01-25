@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="coffee_shop_payment_summary" inherit_id="website_sale.cart_summary"
+              name="Coffee Payment Total">
+        <xpath expr="." position="replace">
+            <div class="cartform-right" style="width: 400px;">
+                <p class="summary">Order summary</p>
+            <t t-call="website_sale.total"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
